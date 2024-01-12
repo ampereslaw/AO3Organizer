@@ -9,7 +9,7 @@ type List = {
   fandom?: string;
   rating?:string;
   warning?:string;
-  tags?: string [];
+  tags: string [];
   words?: number;
   chaps?: number;
 

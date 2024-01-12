@@ -52,14 +52,14 @@ def scrape(page_content):
 
         day = fic.find('p', {'class':'datetime'}).string
 
-        f= fic.find("h5", {"class": "fandoms heading"}).find("a").string
+        f= fic.find('h5', {'class': 'fandoms heading'}).find('a').string
 
-        ratwar = fic.find("ul", {"class": "required-tags"}).find_all("li")
-        r = ratwar[0].fic.find("span", {"class": "text"}).string
-        w = ratwar[1].fic.find("span", {"class": "text"}).string
+        ratwar = fic.find('ul', {'class': 'required-tags'}).find_all('li')
+        r = ratwar[0].fic.find('span', {'class': 'text'}).string
+        w = ratwar[1].fic.find('span', {'class': 'text'}).string
 
 
-        ta= fic.find("ul", {"class": "tags commas"})
+        ta= fic.find('ul', {'class': 'tags commas'})
         tags.extend(ta)
 
         w = fic.find('dd', {'class':'words'}).string
@@ -92,7 +92,7 @@ def get_data():
 def get_taglist():
     return jsonify(tags)
     
-@app.route('/add', methods=['POST', 'GET'])
+@app.route('/add', methods=['POST'])
 def index():
     if request.method == 'POST':
         fictitle = request.form['title']
@@ -131,15 +131,7 @@ def get_pie_chart_data():
         'tdata': tagdata
     })
 
-@app.route('/delete/<int:id>')
-def delete(id):
-    deletefic = Fic.query.get_or_404(id)
-    try:
-        db.session.delete(deletefic)
-        db.session.commit()
-        return redirect('/')
-    except:
-        return 'Error'
+
 
 if __name__ == "__main__":
     app.run(debug=True)

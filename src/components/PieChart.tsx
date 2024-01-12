@@ -15,7 +15,7 @@ function PieChart({labels, data}: Props) {
         const g = Math.floor(Math.random() * 255)
         const col = start + r + ", " + b + ", " + g + ", 0.6)"
         colours.push(col)
-    };
+    }
 
     const chartdata = {
         labels: labels,
